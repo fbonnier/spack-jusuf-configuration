@@ -1,0 +1,40 @@
+compilers:
+- compiler:
+    environment: {}
+    extra_rpaths: []
+    flags: {}
+    modules: []
+    operating_system: rocky8
+    paths:
+      cc: /p/software/jusuf/stages/2022/software/GCCcore/11.2.0/bin/gcc
+      cxx: /p/software/jusuf/stages/2022/software/GCCcore/11.2.0/bin/g++
+      f77: /p/software/jusuf/stages/2022/software/GCCcore/11.2.0/bin/gfortran
+      fc: /p/software/jusuf/stages/2022/software/GCCcore/11.2.0/bin/gfortran
+    spec: gcc@11.2.0
+    target: x86_64
+- compiler:
+    environment: {}
+    extra_rpaths: []
+    flags: {}
+    modules: []
+    operating_system: rocky8
+    paths:
+      cc: /usr/bin/gcc
+      cxx: /usr/bin/g++
+      f77: /usr/bin/gfortran
+      fc: /usr/bin/gfortran
+    spec: gcc@4.8.5
+    target: x86_64
+- compiler:
+    environment: {}
+    extra_rpaths: []
+    flags: {}
+    modules: []
+    operating_system: rocky8
+    paths:
+      cc: /p/software/jusuf/stages/2022/software/intel-compilers/2021.4.0/compiler/2021.4.0/linux/bin/intel64/icc
+      cxx: /p/software/jusuf/stages/2022/software/intel-compilers/2021.4.0/compiler/2021.4.0/linux/bin/intel64/icpc
+      f77: /p/software/jusuf/stages/2022/software/intel-compilers/2021.4.0/compiler/2021.4.0/linux/bin/intel64/ifort
+      fc: /p/software/jusuf/stages/2022/software/intel-compilers/2021.4.0/compiler/2021.4.0/linux/bin/intel64/ifort
+    spec: intel@2021.4.0
+    target: x86_64
