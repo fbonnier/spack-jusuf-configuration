@@ -10,6 +10,8 @@ set -e
 project=$1
 DEPLOYMENT_HOME=/p/project/$project/opt/
 
+CONFIG_HOME=`dirname $0`
+
 # Clone spack repository and setup environment
 cd $DEPLOYMENT_HOME
 [[ -d spack ]] || git clone https://github.com/BlueBrain/spack.git -b jusuf_deployment_2022
@@ -21,7 +23,7 @@ source $SPACK_ROOT/share/spack/setup-env.sh
 
 # Copy configurations
 mkdir -p $SPACK_ROOT/etc/spack/defaults/linux/
-cp $SPACK_ROOT/bluebrain/sysconfig/jusuf/* $SPACK_ROOT/etc/spack/defaults/linux/
+cp $CONFIG_HOME/*.yaml $SPACK_ROOT/etc/spack/defaults/linux/
 
 # Directory for deployment
 export SPACK_INSTALL_PREFIX=$DEPLOYMENT_HOME
