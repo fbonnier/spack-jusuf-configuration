@@ -2,15 +2,20 @@
 module --force purge
 
 module load Stages/2022
-module load Intel/2021.4.0 ParaStationMPI/5.5.0-1
+#module load Intel/2021.4.0 ParaStationMPI/5.5.0-1
+module load GCC/11.2.0
+module load ParaStationMPI/5.5.0-1
 module load HDF5/1.12.1
+module load Doxygen
 
 set -e
 # Deployment directory
 project=$1
 DEPLOYMENT_HOME=/p/project/$project/opt/
 
-CONFIG_HOME=`dirname $0`
+script_path=`readlink -f $0`
+CONFIG_HOME=`dirname $script_path`
+echo "CONFIG_HOME=$CONFIG_HOME"
 
 # Clone spack repository and setup environment
 cd $DEPLOYMENT_HOME
@@ -40,13 +45,17 @@ export LANG=en_US.utf8
 export LC_CTYPE=en_US.UTF-8
 
 PYTHON_VERSION='^python@3.9.6'
-neurodamus_deps="^coreneuron $PYTHON_VERSION"
-spack spec -Il neurodamus-hippocampus+coreneuron %intel $neurodamus_deps
-for nd in neurodamus-hippocampus neurodamus-neocortex neurodamus-mousify
-do
-   spack install --keep-stage --dirty -v $nd+coreneuron %intel $neurodamus_deps
-done
+nest_deps="$PYTHON_VERSION"
+#spack spec -Il neurodamus-hippocampus+coreneuron %intel $neurodamus_deps
+spack spec -Il nest %gcc $nest_deps
+
+echo "NEST INSTALL"
+spack install --keep-stage --dirty -v nest %gcc $nest_deps
+#for nd in neurodamus-hippocampus neurodamus-neocortex neurodamus-mousify
+#do
+#   spack install --keep-stage --dirty -v $nd+coreneuron %intel $neurodamus_deps
+#done
 
 spack module tcl refresh --delete-tree --latest -y
-cd $DEPLOYMENT_HOME/modules/tcl/linux-centos7-zen2
+cd $DEPLOYMENT_HOME/spack/modules/tcl/linux-centos7-zen2
 find py* -type f -print0|xargs -0 sed -i '/PYTHONPATH.*\/neuron-/d'
