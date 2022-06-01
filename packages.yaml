@@ -27,6 +27,12 @@ packages:
     externals:
     - spec: cmake@3.21.1
       prefix: /p/software/jusuf/stages/2022/software/CMake/3.21.1-GCCcore-11.2.0/
+  doxygen:
+    version: [1.9.1]
+    buildable: false
+    externals:
+    - spec: doxygen@1.9.1
+      prefix: /p/software/jusuf/stages/2022/software/Doxygen/1.9.1-GCCcore-11.2.0/
   flex:
     version: [2.6.4]
     buildable: false
