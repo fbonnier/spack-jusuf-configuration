@@ -46,15 +46,18 @@ export LC_CTYPE=en_US.UTF-8
 
 PYTHON_VERSION='^python@3.9.6'
 nest_deps="$PYTHON_VERSION"
-#spack spec -Il neurodamus-hippocampus+coreneuron %intel $neurodamus_deps
-spack spec -Il nest %gcc $nest_deps
+neuron_deps="$PYTHON_VERSION"
 
-echo "NEST INSTALL"
-spack install --keep-stage --dirty -v nest %gcc $nest_deps
-#for nd in neurodamus-hippocampus neurodamus-neocortex neurodamus-mousify
-#do
-#   spack install --keep-stage --dirty -v $nd+coreneuron %intel $neurodamus_deps
-#done
+# SPECS
+# spack spec -Il nest %gcc $nest_deps
+spack spec -Il neuron %gcc $neuron_deps
+
+# INSTALLS
+# echo "NEST INSTALL"
+# spack install --keep-stage --dirty -v nest %gcc $nest_deps
+
+echo "NEURON INSTALL"
+spack install --keep-stage --dirty -v neuron %gcc $neuron_deps
 
 spack module tcl refresh --delete-tree --latest -y
 cd $DEPLOYMENT_HOME/spack/modules/tcl/linux-centos7-zen2
