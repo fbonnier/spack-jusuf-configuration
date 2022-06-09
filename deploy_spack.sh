@@ -48,17 +48,24 @@ export LC_CTYPE=en_US.UTF-8
 PYTHON_VERSION='^python@3.9.6'
 nest_deps="$PYTHON_VERSION"
 neuron_deps="$PYTHON_VERSION"
+arbor_deps="$PYTHON_VERSION"
 
 # SPECS
-# spack spec -Il nest %gcc $nest_deps
+spack spec -Il nest %gcc $nest_deps
 spack spec -Il neuron %gcc $neuron_deps
+spack spec -Il arbor %gcc $arbor_deps
 
 # INSTALLS
 # echo "NEST INSTALL"
 # spack install --keep-stage --dirty -v nest %gcc $nest_deps
 
-echo "NEURON INSTALL"
-spack install --keep-stage --dirty -v neuron %gcc $neuron_deps
+# echo "NEURON INSTALL"
+# spack install --keep-stage --dirty -v neuron %gcc $neuron_deps
+
+echo "ARBOR INSTALL"
+spack install --keep-stage --dirty -v arbor %gcc $arbor_deps
+
+echo "END INSTALL"
 
 spack module tcl refresh --delete-tree --latest -y
 cd $DEPLOYMENT_HOME/spack/modules/tcl/linux-centos7-zen2
