@@ -49,11 +49,15 @@ PYTHON_VERSION='^python@3.9.6'
 nest_deps="$PYTHON_VERSION"
 neuron_deps="$PYTHON_VERSION"
 arbor_deps="$PYTHON_VERSION"
+neo_deps="$PYTHON_VERSION"
+pynn_deps="$PYTHON_VERSION"
 
 # SPECS
 spack spec -Il nest %gcc $nest_deps
 spack spec -Il neuron %gcc $neuron_deps
 spack spec -Il arbor %gcc $arbor_deps
+spack spec -Il py-neo %gcc $neo_deps
+spack spec -Il py-pynn %gcc $pynn_deps
 
 # INSTALLS
 # echo "NEST INSTALL"
@@ -62,8 +66,14 @@ spack spec -Il arbor %gcc $arbor_deps
 # echo "NEURON INSTALL"
 # spack install --keep-stage --dirty -v neuron %gcc $neuron_deps
 
-echo "ARBOR INSTALL"
-spack install --keep-stage --dirty -v arbor %gcc $arbor_deps
+# echo "ARBOR INSTALL"
+# spack install --keep-stage --dirty -v arbor %gcc $arbor_deps
+
+echo "NEO INSTALL"
+spack install --keep-stage --dirty -v py-neo %gcc $neo_deps
+
+echo "PYNN INSTALL"
+spack install --keep-stage --dirty -v py-pynn %gcc $pynn_deps
 
 echo "END INSTALL"
 
