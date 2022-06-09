@@ -19,7 +19,8 @@ echo "CONFIG_HOME=$CONFIG_HOME"
 
 # Clone spack repository and setup environment
 cd $DEPLOYMENT_HOME
-[[ -d spack ]] || git clone https://github.com/BlueBrain/spack.git -b jusuf_deployment_2022
+# [[ -d spack ]] || git clone https://github.com/BlueBrain/spack.git -b jusuf_deployment_2022
+[[ -d spack ]] || git clone https://github.com/spack/spack
 
 # Setup environment
 export SPACK_ROOT=`pwd`/spack
